@@ -1,0 +1,4 @@
+echo -e "\033[1mUpdating sources\033[2m"
+rsync -avz --delete rsync://rsync.torproject.org/website-mirror tor-mirror/
+echo -ne "\033[0m"
+echo -e "\033[1;32mSources have been successfully updated.\033[22;0m"
