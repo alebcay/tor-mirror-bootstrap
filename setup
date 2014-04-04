@@ -20,7 +20,7 @@ else
   echo -e "\033[44mPASS\033[22;0m 8388608 kilobytes required on device, $(df -Pk . | tail -1 | awk '{print $4}') available"
 fi
 echo -ne "\033[44mGET\033[22;0m Downloading maintenance tools (1/1): "
-download "https://raw.githubusercontent.com/alebcay/tor-mirror-bootstrap/master/update"
+[-e ./update ] || download "https://raw.githubusercontent.com/alebcay/tor-mirror-bootstrap/master/update"
 echo -e "\033[44mSYNC\033[22;0m Downloading mirror sources from Tor project"
 echo -ne "\033[2m"
 rsync -ahvz --progress --delete rsync://rsync.torproject.org/website-mirror tor-mirror/
