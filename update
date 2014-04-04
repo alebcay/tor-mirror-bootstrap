@@ -7,7 +7,7 @@ then
   echo -e "\033[44mDONE\033[22;0m \033[1;32mSources have been successfully updated.\033[22;0m"
   exit 0
 else
-  echo -e "\033[41mFATAL\033[22;0m\033[1;31m Could not find a Tor mirror at $(pwd)/tor-mirror.\033[22;0m"
+  echo -e "\033[41mFATAL\033[22;0m\033[1;31m Could not find a Tor mirror at $(pwd)/tor-mirror.\033[22;1m"
   echo -e "To initialize a new mirror, run \033[1;33m./setup\033[22;0m instead."
   exit 1
 fi
