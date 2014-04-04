@@ -1,0 +1,28 @@
+#!/bin/bash
+download()
+{
+    local url=$1
+    echo -n "    "
+    wget --progress=dot $url 2>&1 | grep --line-buffered "%" | \
+        sed -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
+    echo -ne "\b\b\b\b"
+    echo " DONE"
+}
+
+
+if [ $(df -Pk . | tail -1 | awk '{print $4}') -lt 8388608 ]
+then
+  echo -e "\033[41mFATAL\033[22;0m\033[1;31m There is not enough disk space on the device.\033[22;0m"
+  echo -e "The Tor mirror requires at least 8 GB of disk space. To use another location,"
+  echo -e "change the current directory and run this script from that directory."
+  exit 1
+else
+  echo -e "\033[44mPASS\033[22;0m 8388608 kilobytes required on device, $(df -Pk . | tail -1 | awk '{print $4}') available"
+fi
+echo -ne "\033[44mGET\033[22;0m Downloading maintenance tools (1/1): "
+download "https://raw.githubusercontent.com/alebcay/tor-mirror-bootstrap/master/update"
+echo -e "\033[44mSYNC\033[22;0m Downloading mirror sources from Tor project"
+echo -ne "\033[2m"
+rsync -ahvz --progress --delete rsync://rsync.torproject.org/website-mirror tor-mirror/
+echo -ne "\033[0m"
+echo -e "\033[44mDONE\033[22;0m The docroot is at \033[1;33m$(pwd)/tor-mirror\033[22;0m."
