@@ -15,12 +15,7 @@ This bootstrap script currently only checks the first requirement - the other tw
 
 ## Installation
 
-1. Download the setup script (*note: `curl` may fail, it doesn't seem to play nice with GitHub's servers*):
-```
-wget https://raw.githubusercontent.com/alebcay/tor-mirror-bootstrap/master/setup
-```
-
-(the setup script will fetch the update script if you don't have it). Or, just get the whole repo:
+1. Get this repo:
 ```
 git clone https://github.com/alebcay/tor-mirror-bootstrap
 ```
