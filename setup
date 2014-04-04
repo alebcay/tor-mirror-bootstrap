@@ -19,7 +19,7 @@ if [ $(df -Pk . | tail -1 | awk '{print $4}') -lt 8388608 ]
 else
   echo -e "\033[44mPASS\033[22;0m 8388608 kilobytes required on device, $(df -Pk . | tail -1 | awk '{print $4}') available"
 fi
-if [! -e ./update ]
+if [ ! -e ./update ]
   then
   echo -ne "\033[44mGET\033[22;0m Downloading maintenance tools (1/1): "
   download "https://raw.githubusercontent.com/alebcay/tor-mirror-bootstrap/master/update"
